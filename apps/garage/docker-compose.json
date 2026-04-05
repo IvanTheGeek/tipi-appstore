@@ -29,7 +29,19 @@
           "readOnly": true
         }
       ],
-      "restart": "unless-stopped"
+      "restart": "unless-stopped",
+      "extraLabels": {
+        "traefik.http.middlewares.garage-web-redirect.redirectscheme.scheme": "https",
+        "traefik.http.routers.garage-web-insecure.rule": "Host(`public.artifacts.ivanthegeek.com`)",
+        "traefik.http.routers.garage-web-insecure.entrypoints": "web",
+        "traefik.http.routers.garage-web-insecure.service": "garage-web-svc",
+        "traefik.http.routers.garage-web-insecure.middlewares": "garage-web-redirect",
+        "traefik.http.routers.garage-web.rule": "Host(`public.artifacts.ivanthegeek.com`)",
+        "traefik.http.routers.garage-web.entrypoints": "websecure",
+        "traefik.http.routers.garage-web.service": "garage-web-svc",
+        "traefik.http.routers.garage-web.tls.certresolver": "myresolver",
+        "traefik.http.services.garage-web-svc.loadbalancer.server.port": "3902"
+      }
     }
   ]
 }
