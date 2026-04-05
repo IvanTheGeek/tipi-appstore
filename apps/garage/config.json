@@ -1,0 +1,26 @@
+{
+  "name": "Garage",
+  "id": "garage",
+  "available": true,
+  "short_desc": "S3-compatible distributed object storage — self-hosted, AGPL.",
+  "author": "Deuxfleurs",
+  "port": 3900,
+  "categories": [
+    "data"
+  ],
+  "description": "Garage is a lightweight S3-compatible object storage server designed for self-hosting. Single-node or clustered, AGPL-licensed, with a built-in admin API and optional web hosting interface.",
+  "tipi_version": 1,
+  "version": "v1.3.1",
+  "source": "https://git.deuxfleurs.fr/Deuxfleurs/garage",
+  "website": "https://garagehq.deuxfleurs.fr",
+  "exposable": true,
+  "no_gui": true,
+  "supported_architectures": [
+    "arm64",
+    "amd64"
+  ],
+  "created_at": 1775363209383,
+  "updated_at": 1775363209383,
+  "dynamic_config": false,
+  "form_fields": []
+}
