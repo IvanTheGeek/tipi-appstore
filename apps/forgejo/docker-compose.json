@@ -43,6 +43,22 @@
           "value": "${FORGEJO_DB_PASSWORD}"
         },
         {
+          "key": "FORGEJO__server__DOMAIN",
+          "value": "forgejo.ivanthegeek.com"
+        },
+        {
+          "key": "FORGEJO__server__SSH_DOMAIN",
+          "value": "forgejo.ivanthegeek.com"
+        },
+        {
+          "key": "FORGEJO__server__ROOT_URL",
+          "value": "https://forgejo.ivanthegeek.com"
+        },
+        {
+          "key": "FORGEJO__server__SSH_PORT",
+          "value": "222"
+        },
+        {
           "key": "FORGEJO__server__READ_TIMEOUT",
           "value": "0"
         },
@@ -59,6 +75,19 @@
           "value": "2048"
         }
       ],
+      "extraLabels": {
+        "traefik.enable": "true",
+        "traefik.http.middlewares.forgejo-redirect.redirectscheme.scheme": "https",
+        "traefik.http.routers.forgejo-insecure.rule": "Host(`forgejo.ivanthegeek.com`)",
+        "traefik.http.routers.forgejo-insecure.entrypoints": "web",
+        "traefik.http.routers.forgejo-insecure.service": "forgejo-svc",
+        "traefik.http.routers.forgejo-insecure.middlewares": "forgejo-redirect",
+        "traefik.http.routers.forgejo.rule": "Host(`forgejo.ivanthegeek.com`)",
+        "traefik.http.routers.forgejo.entrypoints": "websecure",
+        "traefik.http.routers.forgejo.service": "forgejo-svc",
+        "traefik.http.routers.forgejo.tls.certresolver": "myresolver",
+        "traefik.http.services.forgejo-svc.loadbalancer.server.port": "3000"
+      },
       "dependsOn": ["forgejo-db"],
       "volumes": [
         {

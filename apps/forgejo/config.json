@@ -2,7 +2,7 @@
   "name": "Forgejo",
   "id": "forgejo",
   "available": true,
-  "exposable": true,
+  "exposable": false,
   "dynamic_config": true,
   "port": 8195,
   "categories": ["development"],
@@ -11,7 +11,7 @@
   "author": "forgejo",
   "source": "https://codeberg.org/forgejo/forgejo/",
   "website": "https://forgejo.org",
-  "tipi_version": 1,
+  "tipi_version": 2,
   "version": "14.0.3",
   "form_fields": [
     {
