@@ -1,0 +1,20 @@
+{
+  "name": "LaundryLog",
+  "id": "laundrylog",
+  "available": true,
+  "exposable": false,
+  "dynamic_config": true,
+  "port": 8380,
+  "categories": ["utilities"],
+  "description": "LaundryLog Blazor WebAssembly app — static files served via nginx with brotli/gzip pre-compression, WASM MIME type, and SPA fallback routing.",
+  "short_desc": "LaundryLog — Blazor WebAssembly static site.",
+  "author": "IvanTheGeek",
+  "source": "https://github.com/IvanTheGeek/CheddarBooks",
+  "website": "https://laundrylog.ivanthegeek.com",
+  "tipi_version": 1,
+  "version": "1.0.0",
+  "form_fields": [],
+  "supported_architectures": ["arm64", "amd64"],
+  "created_at": 1776734733780,
+  "updated_at": 1776734733780
+}

@@ -41,6 +41,22 @@
         {
           "key": "FORGEJO__database__PASSWD",
           "value": "${FORGEJO_DB_PASSWORD}"
+        },
+        {
+          "key": "FORGEJO__server__READ_TIMEOUT",
+          "value": "0"
+        },
+        {
+          "key": "FORGEJO__server__WRITE_TIMEOUT",
+          "value": "0"
+        },
+        {
+          "key": "FORGEJO__server__LFS_MAX_BLOB_SIZE",
+          "value": "0"
+        },
+        {
+          "key": "FORGEJO__attachment__MAX_SIZE",
+          "value": "2048"
         }
       ],
       "dependsOn": ["forgejo-db"],
