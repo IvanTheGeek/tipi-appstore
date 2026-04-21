@@ -20,6 +20,7 @@
         }
       ],
       "extraLabels": {
+        "traefik.enable": "true",
         "traefik.http.middlewares.laundrylog-redirect.redirectscheme.scheme": "https",
         "traefik.http.routers.laundrylog-insecure.rule": "Host(`laundrylog.ivanthegeek.com`)",
         "traefik.http.routers.laundrylog-insecure.entrypoints": "web",
