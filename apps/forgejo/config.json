@@ -12,7 +12,7 @@
   "source": "https://codeberg.org/forgejo/forgejo/",
   "website": "https://forgejo.org",
   "tipi_version": 2,
-  "version": "14.0.3",
+  "version": "15.0.1",
   "form_fields": [
     {
       "type": "random",

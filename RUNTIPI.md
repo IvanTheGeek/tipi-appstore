@@ -69,6 +69,8 @@ Each app in `apps/<appstore-id>/` has:
 
 **`traefik.enable: "true"` is mandatory.** RunTIPI's Traefik config sets `exposedByDefault: false`. Without this label, Traefik ignores the container entirely — no routing, no cert.
 
+**`traefik.docker.network: runtipi_tipi_main_network` is required for apps with their own Docker network.** RunTIPI creates a per-app private network in addition to attaching the container to `runtipi_tipi_main_network`. When a container has multiple networks, Traefik may pick the wrong one (the private network that Traefik can't reach), causing 504 errors. This label forces Traefik to use the shared network. Any app whose `docker-compose.json` defines a second service (e.g. a database) will have its own network — always add this label.
+
 ---
 
 ## App Data Path
@@ -108,8 +110,9 @@ RunTIPI uses Traefik v3 as its reverse proxy (`runtipi-reverse-proxy` container)
 - Traefik API is on port 8080 inside the container: `docker exec runtipi-reverse-proxy wget -qO- http://localhost:8080/api/rawdata`
 - `exposedByDefault: false` — every app must have `traefik.enable: "true"` label
 - ACME cert resolver is `myresolver`, uses HTTP challenge on port 80, stores in `/shared/acme.json`
-- Traefik uses a wildcard self-signed `*.ivanthegeek.com` cert as fallback (in `traefik/tls/`)
-- Let's Encrypt certs are issued when Traefik first routes a TLS connection for a new domain
+- Traefik uses a RunTIPI-generated self-signed cert as fallback (`traefik/tls/cert.pem`); its SAN includes the configured domain (e.g. `runtipi.ivanthegeek.com`)
+- Let's Encrypt certs are issued when Traefik first routes a TLS connection for a new domain — BUT only if no "provided certificate" already covers that domain
+- **ACME blocked by defaultCertificate:** RunTIPI's self-signed cert includes the dashboard domain in its SAN. Traefik checks its ACME store first — if a LE cert exists there for the domain, it wins. But if the ACME store is empty (e.g. fresh setup or cleared acme.json), Traefik finds the static cert SAN match and skips ACME entirely. Fix: temporarily remove the `tls.stores.default.defaultCertificate` AND `tls.certificates` sections from `dynamic/dynamic.yml`, then trigger an HTTPS request to the domain. Traefik will issue the ACME cert and store it; after that the defaultCertificate can be restored (ACME store is checked first on subsequent restarts)
 
 ### Debugging Traefik routing
 
