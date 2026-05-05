@@ -73,6 +73,14 @@
         {
           "key": "FORGEJO__attachment__MAX_SIZE",
           "value": "2048"
+        },
+        {
+          "key": "FORGEJO__service__DISABLE_REGISTRATION",
+          "value": "false"
+        },
+        {
+          "key": "FORGEJO__service__REGISTER_MANUAL_CONFIRM",
+          "value": "true"
         }
       ],
       "extraLabels": {
